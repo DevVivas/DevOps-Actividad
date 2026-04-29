@@ -21,20 +21,20 @@ jobs:
       - name: Construir y subir imagen backend
         uses: docker/build-push-action@v5
         with:
-          context: .\tienda\tienda\backend
+          context: ./backend
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/petstore-backend:latest
 
       - name: Construir y subir imagen frontend
         uses: docker/build-push-action@v5
         with:
-          context: ./TIENDA/frontend
+          context: ./frontend
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/petstore-frontend:latest
 
       - name: Construir y subir imagen db
         uses: docker/build-push-action@v5
         with:
-          context: ./TIENDA/db
+          context: ./db
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/petstore-db:latest
