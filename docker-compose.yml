@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    build: ./TIENDA/db
+    build: abrahan47/db
     ports:
       - "3306:3306"
     restart: always
@@ -10,7 +10,7 @@ services:
       - tienda-net
 
   backend:
-    build: ./TIENDA/backend
+    build: abrahan47/backend
     ports:
       - "3001:3001"
     restart: always
@@ -25,7 +25,7 @@ services:
       - tienda-net
 
   frontend:
-    build: ./TIENDA/frontend
+    build: abrahan47/frontend
     ports:
       - "3000:80"
     restart: always
