@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    build: ./TIENDA/db
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - tienda-net
+
+  backend:
+    build: ./TIENDA/backend
+    ports:
+      - "3001:3001"
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=alumno
+      - DB_PASSWORD=alumno123
+      - DB_NAME=tienda_perritos
+    networks:
+      - tienda-net
+
+  frontend:
+    build: ./TIENDA/frontend
+    ports:
+      - "3000:80"
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      - tienda-net
+
+networks:
+  tienda-net:
+    driver: bridge
